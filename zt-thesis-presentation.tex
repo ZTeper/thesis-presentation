@@ -16,6 +16,7 @@
 \usepackage{dirtytalk}
 \usepackage{graphicx}
 \usepackage{textcomp}
+\usepackage{array}
 
 % Define macros
 \newcommand{\degrees}{$\,^{\circ}$}
@@ -25,6 +26,9 @@
 \newcommand{\microns}{$\upmu$m}
 \newcommand{\first}{1\textsuperscript{st}}
 \newcommand{\second}{2\textsuperscript{nd}}
+
+% Define fixed width column
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 
 % Import images
 \graphicspath{
@@ -69,7 +73,9 @@ Supervisor: Prof. Sorin Voinigescu
 
 \date[September 19\textsuperscript{th}, 2024]{September 19\textsuperscript{th}, 2024}
 
-\logo{\includegraphics[height=0.8cm]{logo_uoft}}
+% UofT logo
+\titlegraphic{\includegraphics[width=2cm]
+{logo_uoft}}
 
 \definecolor{uoftblue}{RGB}{6,41,88}
 \setbeamercolor{titlelike}{bg=uoftblue}
@@ -117,13 +123,13 @@ Supervisor: Prof. Sorin Voinigescu
 
 \begin{frame}
 \frametitle{Objective}
-\begin{itemize}
+\begin{enumerate}
 \item Explore several FDSOI CMOS circuit designs for qubit spin manipulation and readout
-\item Shows measurement and simulation results to justify their worth
-\item  Emphasis is on scalability,
+\item Show measurement and simulation results to justify their worth
+\item  Emphasize scalability,
 to enable the integration of very large numbers of qubits on a QPU, together with their accompanying
 electronics.
-\end{itemize}
+\end{enumerate}
 \end{frame}
 
 \begin{frame}
@@ -212,6 +218,18 @@ electronics.
 \end{frame}
 
 \begin{frame}
+\frametitle{CMOS Inverter Biasing Requirements}
+The devices sizes and bias voltages must be designed such that:
+\begin{enumerate}
+\item The input and output voltage (i.e. the devices' V\textsubscript{GS} and V\textsubscript{DS}, respectively), are equal to V\textsubscript{dd}/2
+\item Both the NMOS and PMOS are in the saturation regime
+\item The two devices have the same \say{drive strength}. That is, they have the same on-current ($I_{\textrm{ON}}$) such that for a given capacitive load, the PMOS and NMOS transistors can charge and discharge the load at the same speed
+\item The devices are both biased at the peak fmax current density
+\item The devices have the same threshold voltage
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
 \frametitle{CMOS Current Matching using Backgates}
 \begin{figure}[htpb]
 \centering
@@ -230,6 +248,7 @@ electronics.
 \caption{Auto-biasing circuit schematic.  $V_{\textrm{ddm}}$ is the replica mirror supply, nominally equal to 0.8 V. $V_{\textrm{ddc}}$ is the target circuit supply, nominally equal to 0.8 V.}
 \label{fig:autobias_system_schematic}
 \end{figure}
+\mbox{[Wu, 2022]}
 \end{frame}
 
 \begin{frame}
@@ -304,6 +323,16 @@ electronics.
 
 \section{LC Resonant Circuits for Qubit Spin Readout}
 % 5 slides
+
+\begin{frame}
+\frametitle{Reflectometry Readout Techniques \& Requirements}
+\begin{itemize}
+\item After a spin-quantum computation has finished, the results must be read by collapsing the qubits' wave functions into either spin-up or spin-down states
+\item Exploiting physical phenomena such as quantum tunnelling and Zeeman splitting allows these quantum mechanical results to manifest as electrical parameters such as resistance and capacitance, which can be measured using classical RF techniques
+\item Dispersive readout, which measures the change in capacitance of a charge-sensing SET, relying on the Pauli spin blockade effect to convert a qubit's spin into the presence/absence of charges in the SET
+\end{itemize}
+\mbox{[Vigneau et. al, 2019]}
+\end{frame}
 
 \begin{frame}
 \frametitle{Reflectometry Readout Techniques \& Requirements}
@@ -456,44 +485,220 @@ Phase\:Sensitivity\:(f) = \frac{\phi_{+0.8\:V}(f) - \phi_{-0.4\:V}(f)}{C_{+0.8\:
 \end{columns}
 \end{frame}
 
+\begin{frame}
+\frametitle{Comparison to Prior Art}
+\begin{table}[htpb]
+\centering
+\begin{tabular}{|P{3cm}|P{2cm}|P{2cm}|P{2cm}|}
+\hline
+Specification & \textbf{This Work} & [leGuevel et. al, 2023] & [Arpà et. al, 2023] \\
+\hline
+Resonance Frequency [MHz] & \textbf{65500} & 190 & 430 \\
+\hline
+Peak Phase Sensitivity [\degrees/fF] & \textbf{~45} & 1.7 & ~0.00252 \\
+\hline
+Temperature [K] & \textbf{293} & 4.2 & 0.35 \\
+\hline
+Inductor Type & \textbf{Monolithic Integrated} & Active Gm-C &  Surface-Mounted Ceramic Chip \\
+\hline
+Integration Time [s] & \textbf{430} & 1 & 0.000005 \\
+\hline
+Peak Quality Factor & \textbf{8} & 257 & ~100 \\
+\hline
+\end{tabular}
+\label{tab:reflectometry_comparison}
+\end{table}
+\end{frame}
+
 \section{Frequency Generation for Qubit Spin Control}
 % 5 slides
 
 \begin{frame}
-\frametitle{Frequency Sources in Quantum Computing}
-frequency sources
+\frametitle{Qubit Spin Control Frequency Source Requirements}
+\begin{itemize}
+\item Spin manipulation of qubits involves applying microwave pulses at frequencies close to the qubits' Larmor frequencies in order to perform logical operations (i.e. quantum gates) on them to execute a quantum algorithm $vandersypen_qubit_spin_control$
+\item Fine-grained control of the oscillation frequency is desirable since it enables the frequency source to tune into the resonance frequency of a particular group of qubits, and compensate for variations in the resonance frequency that may result from imperfections in the qubit structures
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Qubit Spin Control Frequency Source Requirements}
+The frequency source must:
+\begin{enumerate}
+\item Have low phase noise to prevent phase errors $edoardo_cryo_cmos$
+\item Be stable in order to avoid frequency drift which causes phase errors on both the driven qubit and also qubits tuned to adjacent frequencies.
+\item Be tunable over a wide range in order to address a large array of qubits, where each qubit has a slightly different (but not necessarily unique) resonance frequency $pellerano_cryo_cmos$
+\end{enumerate}
 \end{frame}
 
 \begin{frame}
 \frametitle{Oscillator Tuning Range}
-tuning range
+\begin{equation}
+VR = \frac{\Delta C}{C_{fixed}}
+\end{equation}
+
+\begin{equation}
+TR = 2\frac{\omega_{max} - \omega_{min}}{\omega_{max} + \omega_{min}}
+\end{equation}
+
+\begin{equation}
+\label{eqn:tuning_range_fcn_varactor_ratio}
+\boxed{TR = 2\frac{\sqrt{VR+1} - 1}{\sqrt{VR+1} + 1}}
+\end{equation}
 \end{frame}
 
 \begin{frame}
 \frametitle{Design of a CMOS Cross-Coupled DCO}
-DCO design
+\begin{figure}[htpb]
+\centering
+\includegraphics[height=0.8\textheight]{dco_schematic.png}
+\label{fig:dco_schematic}
+\end{figure}
 \end{frame}
 
 \begin{frame}
-\frametitle{Measured Tuning Range \& Spectra}
-tuning range
+\frametitle{CMOS Buffers}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.7\textwidth]{cmos_buffer_schematic.png}
+\caption{CMOS buffer schematic showing the DC operating point}
+\label{fig:cmos_buffer_schematic}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Deserializer}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.8\textwidth]{new_deserializer_schematic.png}
+\caption{New deserializer schematic. This deserializer design was not fabricated nor tested in the laboratory, but simulations indicate that the new design eliminates the metastability problem found in the previous iterations of the deserializer. The \say{12f} CMOS inverters are made of transistors with 12 fingers}
+\label{fig:new_deserializer_schematic}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{DCO Non-Linearity}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.5\textwidth]{dco_tuning_range.png}
+\caption{Simulated DCO tuning range, for a set of 16 uniformly spaced digital codes ranging from 0x000 ($f_{osc}$ = 61.34 GHz) to 0xFFF ($f_{osc}$ = 69.43 GHz). The simulated oscillation frequency increases by roughly 2 MHz per LSB step. The best fit line is computed by the least squares method}
+\label{fig:dco_tuning_range}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{DCO Non-Linearity}
+\begin{columns}[c]
+\begin{column}{0.5\textwidth}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.9\textwidth]{dco_inl_dnl.png}
+\caption{INL and DNL in terms of frequency. The INL is equal to the difference between the best fit line and the simulated frequency at each code}
+\label{fig:dco_inl_dnl}
+\end{figure}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.9\textwidth]{dco_inl_dnl_lsb.png}
+\caption{INL and DNL in terms of the LSB step}
+\label{fig:dco_inl_dnl_lsb}
+\end{figure}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Measured Spectra}
+\begin{columns}[c]
+\begin{column}{0.5\textwidth}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.9\textwidth]{zt_dco_spectrum_screenshot_61ghz.png}
+\caption{DCO output spectrum when the digital code is set to 0x000. The oscillation frequency is 61.68 GHz}
+\label{fig:dco_spectrum_screenshot_61ghz}
+\end{figure}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.9\textwidth]{zt_dco_spectrum_screenshot_69ghz.png}
+\caption{DCO output spectrum when the digital code is set to 0xFFF. The oscillation frequency is 68.92 GHz}
+\label{fig:dco_spectrum_screenshot_69ghz}
+\end{figure}
+\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}
 \frametitle{Comparison with Previous DCO Designs}
-comparison
+\begin{table}[htpb]
+\centering
+\tiny
+\begin{tabular}{|P{1.5cm}|P{1.5cm}|P{1.5cm}|P{2cm}|P{1cm}|P{1cm}|}
+\hline
+Specification & This Work (simulated) & \textbf{This Work (measured)} & Radar Transceiver LO from Alex (measured) & [Chicco et. al, 2023] & [Taha, Mirhassani, 2019] \\
+\hline
+Minimum Frequency [GHz] & 61.34 & \textbf{61.68} & 54.93 & 18.7 & 75.5 \\
+\hline
+Maximum Frequency [GHz] & 69.43 & \textbf{68.92} & 62.49 & 24.4 & 82.5 \\
+\hline
+Absolute Tuning Range [GHz] & 8.09 & \textbf{7.24} & 7.56 & 5.7 & 7.0 \\
+\hline
+Normalized Tuning Range [\%] & 12.4 & \textbf{9.0} & 12.9 & 27.2 & 8.9 \\
+\hline
+Power Consumption [mW] & 30.6* & \textbf{35.2*} & 9.0** & 1.2** & 14** \\
+\hline
+Total Number of Control Bits & 12 & \textbf{12} & 12 & 19 & 15 \\
+\hline
+Frequency LSB Step [MHz] & 1.98 & \textbf{1.77} & 1.85 & 0.15 & 0.35 \\
+\hline
+Technology & 22 nm FDSOI CMOS & \textbf{22 nm FDSOI CMOS} & 22 nm FDSOI CMOS & 28 nm bulk CMOS & 65 nm bulk CMOS \\
+\hline
+\end{tabular}
+\mbox{*Power consumption of the entire system, including the buffers, biasing circuit and deserializer.}
+\mbox{**Power consumption of only the oscillator core.}
+\label{tab:dco_comparison}
+\end{table}
 \end{frame}
 
 \section{Conclusion}
 
 \begin{frame}
-\frametitle{Conclusion}
-conclusion, future work
+\frametitle{Summary}
+\begin{itemize}
+\item Further research is needed to enable large-scale quantum computing
+\item This work presents:
+\begin{itemize}
+\item An auto-biasing circuit topology which can be used over a wide temperature range
+\item A resonant circuit which can be used for determining the results of a quantum computation
+\item A frequency source which can be used for generating qubit spin manipulation signals
+\end{itemize}
+\item The circuits were validated with room temperature measurements, and are expected to perform even better at temperatures down to 2 K
+\item The circuit design techniques used in traditional analog design can be used to enable quantum computers with ever-increasing numbers of qubits
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Future Work}
+Future generations of students can improve upon this work by:
+\begin{itemize}
+\item Fabricating and testing the new deserializer design to validate it
+\item A new op amp design with better linearity and bipolar power supplies should enable the auto-biasing circuit to work at cryogenic temperatures
+\item Explore circuit topologies for generating qubit spin manipulation pulses, such as passive switch-based mixers and RFDAC circuits
+\end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{High-Temperature Quantum Computing}
-XXX insert this is fine meme
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.9\textwidth]{this_is_fine_meme}
+\label{fig:this_is_fine_meme}
+\end{figure}
+\mbox{[Diraq]}
 \end{frame}
 
 \begin{frame}
