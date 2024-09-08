@@ -1,0 +1,311 @@
+
+% Zachary Teper
+% MASc Thesis Defence Presentation
+
+\documentclass{beamer}
+\usetheme{Madrid}
+\usecolortheme{default}
+
+\setbeamertemplate{caption}[numbered]
+
+% Import packages
+\usepackage{upgreek}
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage[english]{babel}
+\usepackage{dirtytalk}
+\usepackage{graphicx}
+\usepackage{textcomp}
+
+% Define macros
+\newcommand{\degrees}{$\,^{\circ}$}
+\newcommand{\degreesC}{$\,^{\circ}\textrm{C}$}
+\newcommand{\registered}{\textsuperscript{\textregistered}\,}
+\newcommand{\microamps}{$\upmu$A}
+\newcommand{\microns}{$\upmu$m}
+\newcommand{\first}{1\textsuperscript{st}}
+\newcommand{\second}{2\textsuperscript{nd}}
+
+% Import images
+\graphicspath{
+{../ut-thesis/images/introduction}
+{../ut-thesis/images/background}
+{../ut-thesis/images/autobias_system}
+{../ut-thesis/images/dco}
+{../ut-thesis/images/lc_resonator}
+{../ut-thesis/images/qc_general}
+{../ut-thesis/plots/autobias_system/simulation}
+{../ut-thesis/plots/autobias_system/measurement}
+{../ut-thesis/plots/lc_resonator/simulation}
+{../ut-thesis/plots/lc_resonator/measurement}
+{../ut-thesis/plots/zt_dco/simulation}
+{../ut-thesis/plots/zt_dco/measurement}
+}
+
+\AtBeginSection[]{
+\begin{frame}
+\vfill
+\centering
+\begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+\usebeamerfont{title}\insertsectionhead\par
+\end{beamercolorbox}
+\vfill
+\end{frame}
+}
+
+% Content
+\title[MASc Thesis Defence]
+{Millimetre-Wave Integrated Circuits for Qubit Spin Control \& Readout in Silicon Quantum Processors}
+
+\subtitle{MASc Thesis Defence}
+
+\author{Zachary Teper}
+
+\institute[UofT] {
+Edward S. Rogers Department of Electrical \& Computer Engineering \\
+University of Toronto \\
+Supervisor: Prof. Sorin Voinigescu
+}
+
+\date[September 19\textsuperscript{th}, 2024]{September 19\textsuperscript{th}, 2024}
+
+\logo{\includegraphics[height=0.8cm]{logo_uoft}}
+
+\definecolor{uoftblue}{RGB}{6,41,88}
+\setbeamercolor{titlelike}{bg=uoftblue}
+\setbeamerfont{title}{series=\bfseries}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Agenda}
+\tableofcontents
+\end{frame}
+
+\section{Introduction \& Background}
+% 5 slides
+
+\begin{frame}
+\frametitle{Quantum Computing Using Semiconductor Spin Qubits}
+\begin{columns}[c]
+
+\begin{column}{0.5\textwidth}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.9\textwidth]{bloch_sphere.png}
+\caption{Bloch Sphere}
+\label{fig:bloch_sphere}
+\end{figure}
+\mbox{[Krantz et. al, 2019]}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.9\textwidth]{two_qubit_qpu_micrograph.png}
+\caption{Two-qubit false-colour QPU micrograph}
+\label{fig:two_qubit_qpu_micrograph}
+\end{figure}
+\mbox{[Mills et. al, 2022]}
+\end{column}
+
+\end{columns}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Objective}
+\begin{itemize}
+\item Explore several FDSOI CMOS circuit designs for qubit spin manipulation and readout
+\item Shows measurement and simulation results to justify their worth
+\item  Emphasis is on scalability,
+to enable the integration of very large numbers of qubits on a QPU, together with their accompanying
+electronics.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Semiconductor Spin Quantum Computing}
+\begin{columns}[c]
+
+\begin{column}{0.5\textwidth}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.9\textwidth]{two_qubit_spin_control.png}
+\caption{Two qubit spin control, drawn on a Bloch Sphere}
+\label{fig:two_qubit_spin_control}
+\end{figure}
+\mbox{[Pellerano \& Subramanian, 2024]}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.7\textwidth]{qpc_reflectometry.png}
+\caption{One-port reflectometry experiment on a quantum point contact coupled to a double quantum dot}
+\label{fig:qpc_reflectometry}
+\end{figure}
+\mbox{[Reilly et. al, 2007]}
+\end{column}
+
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Quantum Computer System Architecture}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.7\textwidth]{cryo_cmos_block_diagram.png}
+\caption{Block diagram of current and future configurations for scalable quantum computers with cryogenic integrated circuits}
+\label{fig:cryo_cmos_block_diagram}
+\end{figure}
+\mbox{[Pellerano \& Subramanian, 2024]}
+\end{frame}
+
+\begin{frame}
+\frametitle{Fully-Depleted Silicon-On-Insulator Technology}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.7\textwidth]{22fdx_cross_section.png}
+\caption{Cross section of NMOS and PMOS transistors in 22FDX\registered}
+\label{fig:22fdx_cross_section}
+\end{figure}
+\mbox{[Bonen et. al, 2022]}
+\end{frame}
+
+\begin{frame}
+\frametitle{Fully-Depleted Silicon-On-Insulator Technology}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.9\textwidth]{vt_vs_vbg.png}
+\caption{Measured threshold voltage versus backgate voltage for a 40 x 18 nm x 590 nm transistor}
+\label{fig:vt_vs_vbg}
+\end{figure}
+\mbox{[Bonen et. al, 2022]}
+\end{frame}
+
+\section{Temperature Insensitive DC Auto-Biasing in FDSOI CMOS}
+% 5 slides
+
+\begin{frame}
+\frametitle{CMOS Inverters: The Basic Circuit Building Block}
+CMOS inverters
+\end{frame}
+
+\begin{frame}
+\frametitle{CMOS Current Matching using Backgates}
+backgate current matching
+\end{frame}
+
+\begin{frame}
+\frametitle{Feedback Circuit for Setting Backgates}
+feedback circuit
+\end{frame}
+
+\begin{frame}
+\frametitle{Rail-to-Rail Op Amp Design}
+op amp
+\end{frame}
+
+\begin{frame}
+\frametitle{Laboratory Measurements}
+measurements
+\end{frame}
+
+\section{LC Resonant Circuits for Qubit Spin Readout}
+% 5 slides
+
+\begin{frame}
+\frametitle{Reflectometry Readout Techniques \& Requirements}
+reflectometry
+\end{frame}
+
+\begin{frame}
+\frametitle{12-bit Minimum Sized Unit Varactor Array}
+varactor
+\end{frame}
+
+\begin{frame}
+\frametitle{Phase Response}
+phase response
+\end{frame}
+
+\begin{frame}
+\frametitle{Measured Resonance Frequency}
+resonance
+\end{frame}
+
+\begin{frame}
+\frametitle{Measured Phase Sensitivity}
+phase sensitivity
+\end{frame}
+
+\section{Frequency Generation for Qubit Spin Control}
+% 5 slides
+
+\begin{frame}
+\frametitle{Frequency Sources in Quantum Computing}
+frequency sources
+\end{frame}
+
+\begin{frame}
+\frametitle{Oscillator Tuning Range}
+tuning range
+\end{frame}
+
+\begin{frame}
+\frametitle{Design of a CMOS Cross-Coupled DCO}
+DCO design
+\end{frame}
+
+\begin{frame}
+\frametitle{Measured Tuning Range \& Spectra}
+tuning range
+\end{frame}
+
+\begin{frame}
+\frametitle{Comparison with Previous DCO Designs}
+comparison
+\end{frame}
+
+\section{Conclusion}
+
+\begin{frame}
+\frametitle{Conclusion}
+conclusion, future work
+\end{frame}
+
+\begin{frame}
+\frametitle{High-Temperature Quantum Computing}
+XXX insert this is fine meme
+\end{frame}
+
+\begin{frame}
+\frametitle{References}
+\begin{enumerate}
+\item 1 Krantz
+\item 2 Mills
+\item 3
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+\frametitle{Questions}
+The presenter is now open to questions from the committee
+\end{frame}
+
+%\begin{block}{Remark}
+%Sample text
+%\end{block}
+%
+%\begin{alertblock}{Important theorem}
+%Sample text in red box
+%\end{alertblock}
+%
+%\begin{examples}
+%Sample text in green box. The title of the block is ``Examples".
+%\end{examples}
+
+\end{document}
