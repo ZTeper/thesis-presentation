@@ -128,6 +128,17 @@ electronics.
 
 \begin{frame}
 \frametitle{Semiconductor Spin Quantum Computing}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.7\textwidth]{two_qubit_algorithm.png}
+\caption{Example of a quantum algorithm with two qubits}
+\label{fig:two_qubit_algorithm}
+\end{figure}
+\mbox{[Pellerano \& Subramanian, 2024]}
+\end{frame}
+
+\begin{frame}
+\frametitle{Semiconductor Spin Quantum Computing}
 \begin{columns}[c]
 
 \begin{column}{0.5\textwidth}
@@ -191,27 +202,104 @@ electronics.
 
 \begin{frame}
 \frametitle{CMOS Inverters: The Basic Circuit Building Block}
-CMOS inverters
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.7\textwidth]{sb_qubit_readout_tia.png}
+\caption{Schematic of a qubit readout TIA; an example of an analog amplifier which relies on CMOS inverter-based circuits and must work reliably at cryogenic temperatures}
+\label{fig:sb_qubit_readout_tia}
+\end{figure}
+\mbox{[Bonen, 2020]}
 \end{frame}
 
 \begin{frame}
 \frametitle{CMOS Current Matching using Backgates}
-backgate current matching
+\begin{figure}[htpb]
+\centering
+\includegraphics[scale=0.5]{lucy_backgate_circuit.png}
+\caption{Backgate setting replica circuit}
+\label{fig:lucy_backgate_circuit}
+\end{figure}
+\mbox{[Wu, 2022]}
 \end{frame}
 
 \begin{frame}
 \frametitle{Feedback Circuit for Setting Backgates}
-feedback circuit
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.6\textwidth]{autobias_system_schematic.png}
+\caption{Auto-biasing circuit schematic.  $V_{\textrm{ddm}}$ is the replica mirror supply, nominally equal to 0.8 V. $V_{\textrm{ddc}}$ is the target circuit supply, nominally equal to 0.8 V.}
+\label{fig:autobias_system_schematic}
+\end{figure}
 \end{frame}
 
 \begin{frame}
 \frametitle{Rail-to-Rail Op Amp Design}
-op amp
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.8\textwidth]{opamp_schematic.png}
+\caption{CMOS rail-to-rail op amp schematic. All devices have 300 nm gate lengths. All NMOS devices have 1.8 V backgates, and all PMOS devices have 0 V backgates. All transistors are of the EGSLVT (thick-oxide, maximum 1.8 V, super-low $|V_{\textrm{t}}|$) flavour.}
+\label{fig:opamp_schematic}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Rail-to-Rail Op Amp Design}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.8\textwidth]{opamp_operating_point.png}
+\caption{CMOS rail-to-rail op amp operating points. All devices have 300 nm gate lengths. All NMOS devices have 1.8 V backgates, and all PMOS devices have 0 V backgates. All transistors are of the EGSLVT (thick-oxide, maximum 1.8 V, super-low $|V_{\textrm{t}}|$) flavour.}
+\label{fig:opamp_operating_point}
+\end{figure}
 \end{frame}
 
 \begin{frame}
 \frametitle{Laboratory Measurements}
-measurements
+\begin{columns}[c]
+
+\begin{column}{0.5\textwidth}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.9\textwidth]{jds_vs_independent_temp_0p8V.png}
+\caption[Measured target circuit current density versus temperature]{Measured target circuit current density versus temperature, with 0.8 V supply voltage.}
+\label{fig:jds_vs_independent_temp_0p8V}
+\end{figure}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.9\textwidth]{voltage_vs_independent_temp_0p8V.png}
+\caption[Measured target circuit output voltage versus temperature]{Measured target circuit output voltage versus temperature, with 0.8 V supply voltage.}
+\label{fig:voltage_vs_independent_temp_0p8V}
+\end{figure}
+\end{column}
+
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Laboratory Measurements}
+\begin{columns}[c]
+
+\begin{column}{0.5\textwidth}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.9\textwidth]{jds_vs_independent_temp_0p8V_sim_vs_measurement.png}
+\caption{Comparison of simulated and measured current density of the target circuit, for $J_{mirror}$ = 250 $\upmu$A/$\upmu$m and 0.8 V supply voltage}
+\label{fig:jds_vs_independent_temp_0p8V_sim_vs_measurement}
+\end{figure}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.9\textwidth]{vout_vs_independent_temp_0p8V_sim_vs_measurement.png}
+\caption{Comparison of simulated and measured output voltage of the target circuit, for $J_{mirror}$ = 250 $\upmu$A/$\upmu$m and 0.8 V supply voltage}
+\label{fig:vout_vs_independent_temp_0p8V_sim_vs_measurement}
+\end{figure}
+\end{column}
+
+\end{columns}
 \end{frame}
 
 \section{LC Resonant Circuits for Qubit Spin Readout}
