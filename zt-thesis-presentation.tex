@@ -307,27 +307,153 @@ electronics.
 
 \begin{frame}
 \frametitle{Reflectometry Readout Techniques \& Requirements}
-reflectometry
+
+\begin{equation}
+\label{eqn:set_capacitance}
+C_s = C_{geometry} + C_{quantum} + C_{tunnelling}
+\end{equation}
+
+\begin{equation}
+\label{eqn:quantum_capacitance}
+C_{quantum} = q^2 \frac{\partial N}{\partial \mu} = q^2 \lim_{T\to 0}  \rho(E_F)
+\end{equation}
+
+\begin{equation}
+\label{eqn:tunnelling_capacitance1}
+C_{tunnelling} = \frac{(q\alpha)^2}{k_B T} \frac{R_K}{R_T} \frac{\epsilon_0}{h\gamma} \frac{\gamma^2}{\gamma^2 + \omega^2}\textrm{arsinh}(\frac{\epsilon_0}{k_B T})
+\end{equation}
+
+\begin{equation}
+\label{eqn:tunnelling_capacitance2}
+\gamma = \frac{R_K}{R_T} \frac{\epsilon_0}{h} \textrm{coth}(\frac{\epsilon_0}{2k_B T})
+\end{equation}
+
+\mbox{[Vigneau et. al, 2023]}
+\end{frame}
+
+\begin{frame}
+\frametitle{Reflectometry Readout Techniques \& Requirements}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.8\textwidth]{sv_iqubits_reflectometry.png}
+\caption{Reflectometry architecture for a 1-dimensional qubit array, with a dedicated inductor for each qubit}
+\label{fig:sv_iqubits_reflectometry}
+\end{figure}
+\mbox{[Voinigescu, 2024]}
 \end{frame}
 
 \begin{frame}
 \frametitle{12-bit Minimum Sized Unit Varactor Array}
-varactor
+\begin{columns}[c]
+\begin{column}{0.5\textwidth}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.9\textwidth]{varactor_12bit_layout.png}
+\caption{Layout of the entire 12-bit varactor}
+\label{fig:varactor_12bit_layout}
+\end{figure}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.9\textwidth]{varactor_4bit_layout.png}
+\caption{Layout of the lowest 4 bits of the 12-bit varactor}
+\label{fig:varactor_4bit_layout}
+\end{figure}
+\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}
-\frametitle{Phase Response}
-phase response
+\frametitle{12-bit Minimum Sized Unit Varactor Array}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.5\textwidth]{zt_unit_varactor.png}
+\caption{Simulation (without extracted parasitics) of the 12-bit varactor when adjusting the control voltage of the first 2 LSBs. The overall change in capacitance caused by the \first \, LSB is 18.4 aF. The overall change in capacitance caused by the \second \, LSB is 37.5 aF. In this simulation, the backgate voltage is zero, the top gate voltage is 0.4 V, and the 10 MSBs are set to 0.8 V.}
+\label{fig:unit_varactor}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Phase Sensitivity}
+\begin{equation}
+\label{eqn:phase_definition}
+\phi = phase\{-Y_{12}\}
+\end{equation}
+
+\begin{equation}
+\label{eqn:phase_sensitivity_quantum}
+Phase\:Sensitivity\:(f) = \frac{\phi_{\ket{\uparrow}}(f) - \phi_{\ket{\downarrow}}(f)}{C_{\ket{\uparrow}} - C_{\ket{\downarrow}}} = \frac{\Delta \phi}{\Delta C}(f)
+\end{equation}
+
+\begin{equation}
+\label{eqn:phase_sensitivity_varactor}
+Phase\:Sensitivity\:(f) = \frac{\phi_{+0.8\:V}(f) - \phi_{-0.4\:V}(f)}{C_{+0.8\:V} - C_{-0.4\:V}} = \frac{\Delta \phi}{\Delta C}(f)
+\end{equation}
+
+\begin{equation}
+\label{eqn:parallel_rlc_ps_result}
+\boxed{PS(\omega_r) = -\omega_r R = -Q/C}
+\end{equation}
 \end{frame}
 
 \begin{frame}
 \frametitle{Measured Resonance Frequency}
-resonance
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.5\textwidth]{zt_measured_tuning_range.png}
+\caption{Measured and simulated tuning range, with respect to the MSB control voltage. The measured tuning range is 47.45 GHz to 63.40 GHz (28.8 \%).}
+\label{fig:measured_tuning_range}
+\end{figure}
 \end{frame}
 
 \begin{frame}
 \frametitle{Measured Phase Sensitivity}
-phase sensitivity
+\begin{columns}[c]
+\begin{column}{0.5\textwidth}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.9\textwidth]{zt_phase_b1_measured.png}
+\caption{Measured LC resonator phase with respect to the \first \, LSB control voltage.}
+\label{fig:phase_b1_measured}
+\end{figure}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.9\textwidth]{zt_phase_sensitivity_b1_measured.png}
+\caption{Measured PS with respect to frequency and the \first \, LSB control voltage. The PS is calculated by dividing the difference in phase between the highest and lowest voltage by 20 aF}
+\label{fig:phase_sensitivity_b1_measured}
+\end{figure}
+\end{column}
+
+\end{columns}
+\end{frame}
+
+\begin{frame}
+\frametitle{Measured Phase Sensitivity}
+\begin{columns}[c]
+\begin{column}{0.5\textwidth}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.9\textwidth]{zt_phase_b2_measured.png}
+\caption{Measured LC resonator phase with respect to the \second \, LSB control voltage.}
+\label{fig:phase_b2_measured}
+\end{figure}
+\end{column}
+
+\begin{column}{0.5\textwidth}
+\begin{figure}[htpb]
+\centering
+\includegraphics[width=0.9\textwidth]{zt_phase_sensitivity_b2_measured.png}
+\caption{Measured PS with respect to frequency and the \second \, LSB control voltage. The PS is calculated by dividing the difference in phase between the highest and lowest voltage by 40 aF}
+\label{fig:phase_sensitivity_b2_measured}
+\end{figure}
+\end{column}
+
+\end{columns}
 \end{frame}
 
 \section{Frequency Generation for Qubit Spin Control}
