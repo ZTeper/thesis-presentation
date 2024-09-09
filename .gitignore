@@ -22,5 +22,7 @@
 *.toc
 *.snm
 *.nav
+*.bcf
+*.xml
 glossaries.bbl
 glossaries.blg

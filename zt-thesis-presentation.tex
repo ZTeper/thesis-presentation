@@ -7,6 +7,7 @@
 \usecolortheme{default}
 
 \setbeamertemplate{caption}[numbered]
+\setbeamertemplate{bibliography item}{\insertbiblabel}
 
 % Import packages
 \usepackage{upgreek}
@@ -17,6 +18,7 @@
 \usepackage{graphicx}
 \usepackage{textcomp}
 \usepackage{array}
+%\usepackage{biblatex}
 
 % Define macros
 \newcommand{\degrees}{$\,^{\circ}$}
@@ -101,7 +103,7 @@ Supervisor: Prof. Sorin Voinigescu
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.9\textwidth]{bloch_sphere.png}
-\caption{Bloch Sphere}
+\caption{Bloch Sphere \cite{oliver_engineers_guide_to_qubits}}
 \label{fig:bloch_sphere}
 \end{figure}
 \mbox{[Krantz et. al, 2019]}
@@ -111,7 +113,7 @@ Supervisor: Prof. Sorin Voinigescu
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.9\textwidth]{two_qubit_qpu_micrograph.png}
-\caption{Two-qubit false-colour QPU micrograph}
+\caption{Two-qubit false-colour QPU micrograph \cite{petta_two_qubit_qpu}}
 \label{fig:two_qubit_qpu_micrograph}
 \end{figure}
 \mbox{[Mills et. al, 2022]}
@@ -126,9 +128,8 @@ Supervisor: Prof. Sorin Voinigescu
 \begin{enumerate}
 \item Explore several FDSOI CMOS circuit designs for qubit spin manipulation and readout
 \item Show measurement and simulation results to justify their worth
-\item  Emphasize scalability,
-to enable the integration of very large numbers of qubits on a QPU, together with their accompanying
-electronics.
+\item  Enable the integration of very large numbers of qubits on a QPU together with their accompanying
+electronics, emphasizing scalability
 \end{enumerate}
 \end{frame}
 
@@ -137,7 +138,7 @@ electronics.
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.7\textwidth]{two_qubit_algorithm.png}
-\caption{Example of a quantum algorithm with two qubits}
+\caption{Example of a quantum algorithm with two qubits \cite{intel_ims_slides}}
 \label{fig:two_qubit_algorithm}
 \end{figure}
 \mbox{[Pellerano \& Subramanian, 2024]}
@@ -151,7 +152,7 @@ electronics.
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.9\textwidth]{two_qubit_spin_control.png}
-\caption{Two qubit spin control, drawn on a Bloch Sphere}
+\caption{Two qubit spin control, drawn on a Bloch Sphere \cite{intel_ims_slides}}
 \label{fig:two_qubit_spin_control}
 \end{figure}
 \mbox{[Pellerano \& Subramanian, 2024]}
@@ -161,7 +162,7 @@ electronics.
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.7\textwidth]{qpc_reflectometry.png}
-\caption{One-port reflectometry experiment on a quantum point contact coupled to a double quantum dot}
+\caption{One-port reflectometry experiment on a quantum point contact coupled to a double quantum dot \cite{gossard_qpc_charge_sensing}}
 \label{fig:qpc_reflectometry}
 \end{figure}
 \mbox{[Reilly et. al, 2007]}
@@ -175,7 +176,7 @@ electronics.
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.7\textwidth]{cryo_cmos_block_diagram.png}
-\caption{Block diagram of current and future configurations for scalable quantum computers with cryogenic integrated circuits}
+\caption{Block diagram of current and future configurations for scalable quantum computers with cryogenic integrated circuits \cite{intel_ims_slides}}
 \label{fig:cryo_cmos_block_diagram}
 \end{figure}
 \mbox{[Pellerano \& Subramanian, 2024]}
@@ -186,7 +187,7 @@ electronics.
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.7\textwidth]{22fdx_cross_section.png}
-\caption{Cross section of NMOS and PMOS transistors in 22FDX\registered}
+\caption{Cross section of NMOS and PMOS transistors in 22FDX\registered \cite{sv_22fdx_unique_features}}
 \label{fig:22fdx_cross_section}
 \end{figure}
 \mbox{[Bonen et. al, 2022]}
@@ -197,7 +198,7 @@ electronics.
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.9\textwidth]{vt_vs_vbg.png}
-\caption{Measured threshold voltage versus backgate voltage for a 40 x 18 nm x 590 nm transistor}
+\caption{Measured threshold voltage versus backgate voltage for a 40 x 18 nm x 590 nm transistor \cite{sv_22fdx_unique_features}}
 \label{fig:vt_vs_vbg}
 \end{figure}
 \mbox{[Bonen et. al, 2022]}
@@ -211,7 +212,7 @@ electronics.
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.7\textwidth]{sb_qubit_readout_tia.png}
-\caption{Schematic of a qubit readout TIA; an example of an analog amplifier which relies on CMOS inverter-based circuits and must work reliably at cryogenic temperatures}
+\caption{Schematic of a qubit readout TIA; an example of an analog amplifier which relies on CMOS inverter-based circuits and must work reliably at cryogenic temperatures \cite{shai_masc_thesis}}
 \label{fig:sb_qubit_readout_tia}
 \end{figure}
 \mbox{[Bonen, 2020]}
@@ -221,7 +222,7 @@ electronics.
 \frametitle{CMOS Inverter Biasing Requirements}
 The devices sizes and bias voltages must be designed such that:
 \begin{enumerate}
-\item The input and output voltage (i.e. the devices' V\textsubscript{GS} and V\textsubscript{DS}, respectively), are equal to V\textsubscript{dd}/2
+\item The input and output voltage (i.e. the devices' V\textsubscript{GS} and V\textsubscript{DS}, respectively), are equal to V\textsubscript{dd}/2 \cite{lucy_thesis}
 \item Both the NMOS and PMOS are in the saturation regime
 \item The two devices have the same \say{drive strength}. That is, they have the same on-current ($I_{\textrm{ON}}$) such that for a given capacitive load, the PMOS and NMOS transistors can charge and discharge the load at the same speed
 \item The devices are both biased at the peak fmax current density
@@ -234,7 +235,7 @@ The devices sizes and bias voltages must be designed such that:
 \begin{figure}[htpb]
 \centering
 \includegraphics[scale=0.5]{lucy_backgate_circuit.png}
-\caption{Backgate setting replica circuit}
+\caption{Backgate setting replica circuit \cite{lucy_thesis}}
 \label{fig:lucy_backgate_circuit}
 \end{figure}
 \mbox{[Wu, 2022]}
@@ -248,7 +249,6 @@ The devices sizes and bias voltages must be designed such that:
 \caption{Auto-biasing circuit schematic.  $V_{\textrm{ddm}}$ is the replica mirror supply, nominally equal to 0.8 V. $V_{\textrm{ddc}}$ is the target circuit supply, nominally equal to 0.8 V.}
 \label{fig:autobias_system_schematic}
 \end{figure}
-\mbox{[Wu, 2022]}
 \end{frame}
 
 \begin{frame}
@@ -329,9 +329,8 @@ The devices sizes and bias voltages must be designed such that:
 \begin{itemize}
 \item After a spin-quantum computation has finished, the results must be read by collapsing the qubits' wave functions into either spin-up or spin-down states
 \item Exploiting physical phenomena such as quantum tunnelling and Zeeman splitting allows these quantum mechanical results to manifest as electrical parameters such as resistance and capacitance, which can be measured using classical RF techniques
-\item Dispersive readout, which measures the change in capacitance of a charge-sensing SET, relying on the Pauli spin blockade effect to convert a qubit's spin into the presence/absence of charges in the SET
+\item Dispersive readout, which measures the change in capacitance of a charge-sensing SET, relying on the Pauli spin blockade effect to convert a qubit's spin into the presence/absence of charges in the SET \cite{vigneau_review}
 \end{itemize}
-\mbox{[Vigneau et. al, 2019]}
 \end{frame}
 
 \begin{frame}
@@ -357,7 +356,7 @@ C_{tunnelling} = \frac{(q\alpha)^2}{k_B T} \frac{R_K}{R_T} \frac{\epsilon_0}{h\g
 \gamma = \frac{R_K}{R_T} \frac{\epsilon_0}{h} \textrm{coth}(\frac{\epsilon_0}{2k_B T})
 \end{equation}
 
-\mbox{[Vigneau et. al, 2023]}
+\mbox{\cite{vigneau_review}}
 \end{frame}
 
 \begin{frame}
@@ -365,7 +364,7 @@ C_{tunnelling} = \frac{(q\alpha)^2}{k_B T} \frac{R_K}{R_T} \frac{\epsilon_0}{h\g
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.8\textwidth]{sv_iqubits_reflectometry.png}
-\caption{Reflectometry architecture for a 1-dimensional qubit array, with a dedicated inductor for each qubit}
+\caption{Reflectometry architecture for a 1-dimensional qubit array, with a dedicated inductor for each qubit \cite{sv_iqubits_report}}
 \label{fig:sv_iqubits_reflectometry}
 \end{figure}
 \mbox{[Voinigescu, 2024]}
@@ -491,7 +490,7 @@ Phase\:Sensitivity\:(f) = \frac{\phi_{+0.8\:V}(f) - \phi_{-0.4\:V}(f)}{C_{+0.8\:
 \centering
 \begin{tabular}{|P{3cm}|P{2cm}|P{2cm}|P{2cm}|}
 \hline
-Specification & \textbf{This Work} & [leGuevel et. al, 2023] & [Arpà et. al, 2023] \\
+Specification & \textbf{This Work} & \cite{impedancemetry_leGuevel} & \cite{dispersive_readout_franceschi} \\
 \hline
 Resonance Frequency [MHz] & \textbf{65500} & 190 & 430 \\
 \hline
@@ -516,7 +515,7 @@ Peak Quality Factor & \textbf{8} & 257 & ~100 \\
 \begin{frame}
 \frametitle{Qubit Spin Control Frequency Source Requirements}
 \begin{itemize}
-\item Spin manipulation of qubits involves applying microwave pulses at frequencies close to the qubits' Larmor frequencies in order to perform logical operations (i.e. quantum gates) on them to execute a quantum algorithm $vandersypen_qubit_spin_control$
+\item Spin manipulation of qubits involves applying microwave pulses at frequencies close to the qubits' Larmor frequencies in order to perform logical operations (i.e. quantum gates) on them to execute a quantum algorithm \cite{vandersypen_qubit_spin_control}
 \item Fine-grained control of the oscillation frequency is desirable since it enables the frequency source to tune into the resonance frequency of a particular group of qubits, and compensate for variations in the resonance frequency that may result from imperfections in the qubit structures
 \end{itemize}
 \end{frame}
@@ -525,9 +524,9 @@ Peak Quality Factor & \textbf{8} & 257 & ~100 \\
 \frametitle{Qubit Spin Control Frequency Source Requirements}
 The frequency source must:
 \begin{enumerate}
-\item Have low phase noise to prevent phase errors $edoardo_cryo_cmos$
+\item Have low phase noise to prevent phase errors \cite{edoardo_cryo_cmos}
 \item Be stable in order to avoid frequency drift which causes phase errors on both the driven qubit and also qubits tuned to adjacent frequencies.
-\item Be tunable over a wide range in order to address a large array of qubits, where each qubit has a slightly different (but not necessarily unique) resonance frequency $pellerano_cryo_cmos$
+\item Be tunable over a wide range in order to address a large array of qubits, where each qubit has a slightly different (but not necessarily unique) resonance frequency \cite{pellerano_cryo_cmos}
 \end{enumerate}
 \end{frame}
 
@@ -698,33 +697,18 @@ Future generations of students can improve upon this work by:
 \includegraphics[width=0.9\textwidth]{this_is_fine_meme}
 \label{fig:this_is_fine_meme}
 \end{figure}
-\mbox{[Diraq]}
+\mbox{[Drawn by K.C. Green, edited by Diraq employees]}
 \end{frame}
 
-\begin{frame}
+\begin{frame}[allowframebreaks]
 \frametitle{References}
-\begin{enumerate}
-\item 1 Krantz
-\item 2 Mills
-\item 3
-\end{enumerate}
+\bibliography{zt_thesis}
+\bibliographystyle{ieeetr}
 \end{frame}
 
 \begin{frame}
 \frametitle{Questions}
 The presenter is now open to questions from the committee
 \end{frame}
-
-%\begin{block}{Remark}
-%Sample text
-%\end{block}
-%
-%\begin{alertblock}{Important theorem}
-%Sample text in red box
-%\end{alertblock}
-%
-%\begin{examples}
-%Sample text in green box. The title of the block is ``Examples".
-%\end{examples}
 
 \end{document}
