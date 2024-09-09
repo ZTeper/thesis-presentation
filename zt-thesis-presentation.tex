@@ -97,7 +97,7 @@ Supervisor: Prof. Sorin Voinigescu
 
 \begin{frame}
 \frametitle{Quantum Computing Using Semiconductor Spin Qubits}
-\begin{columns}[c]
+\begin{columns}[t]
 
 \begin{column}{0.5\textwidth}
 \begin{figure}[htpb]
@@ -122,9 +122,9 @@ Supervisor: Prof. Sorin Voinigescu
 \end{columns}
 \end{frame}
 
-
 \begin{frame}
-\frametitle{Objective}
+\frametitle{Objectives}
+Objectives:
 \begin{enumerate}
 \item Explore several FDSOI CMOS circuit designs for qubit spin manipulation and readout
 \item Show measurement and simulation results to justify their worth
@@ -134,7 +134,7 @@ electronics, emphasizing scalability
 \end{frame}
 
 \begin{frame}
-\frametitle{Semiconductor Spin Quantum Computing}
+\frametitle{Spin-Quantum Algorithms}
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.7\textwidth]{two_qubit_algorithm.png}
@@ -146,7 +146,7 @@ electronics, emphasizing scalability
 
 \begin{frame}
 \frametitle{Semiconductor Spin Quantum Computing}
-\begin{columns}[c]
+\begin{columns}[t]
 
 \begin{column}{0.5\textwidth}
 \begin{figure}[htpb]
@@ -161,7 +161,7 @@ electronics, emphasizing scalability
 \begin{column}{0.5\textwidth}
 \begin{figure}[htpb]
 \centering
-\includegraphics[width=0.7\textwidth]{qpc_reflectometry.png}
+\includegraphics[width=0.9\textwidth]{qpc_reflectometry.png}
 \caption{One-port reflectometry experiment on a quantum point contact coupled to a double quantum dot \cite{gossard_qpc_charge_sensing}}
 \label{fig:qpc_reflectometry}
 \end{figure}
@@ -220,12 +220,12 @@ electronics, emphasizing scalability
 
 \begin{frame}
 \frametitle{CMOS Inverter Biasing Requirements}
-The devices sizes and bias voltages must be designed such that:
+The devices sizes and bias voltages must be designed such that \cite{lucy_thesis}:
 \begin{enumerate}
-\item The input and output voltage (i.e. the devices' V\textsubscript{GS} and V\textsubscript{DS}, respectively), are equal to V\textsubscript{dd}/2 \cite{lucy_thesis}
-\item Both the NMOS and PMOS are in the saturation regime
+\item The input and output voltages (i.e. the devices' V\textsubscript{GS} and V\textsubscript{DS}, respectively), are equal to V\textsubscript{dd}/2
+\item Both the NMOS and PMOS transistors are in the saturation regime
 \item The two devices have the same \say{drive strength}. That is, they have the same on-current ($I_{\textrm{ON}}$) such that for a given capacitive load, the PMOS and NMOS transistors can charge and discharge the load at the same speed
-\item The devices are both biased at the peak fmax current density
+\item The devices are both biased at the peak $\textrm{f}_{max}$\footnote[1]{$\textrm{f}_{T}$ or $\textrm{NF}_{min}$ may also be used} current density
 \item The devices have the same threshold voltage
 \end{enumerate}
 \end{frame}
@@ -273,7 +273,7 @@ The devices sizes and bias voltages must be designed such that:
 
 \begin{frame}
 \frametitle{Laboratory Measurements}
-\begin{columns}[c]
+\begin{columns}[t]
 
 \begin{column}{0.5\textwidth}
 \begin{figure}[htpb]
@@ -298,7 +298,7 @@ The devices sizes and bias voltages must be designed such that:
 
 \begin{frame}
 \frametitle{Laboratory Measurements}
-\begin{columns}[c]
+\begin{columns}[t]
 
 \begin{column}{0.5\textwidth}
 \begin{figure}[htpb]
@@ -329,7 +329,7 @@ The devices sizes and bias voltages must be designed such that:
 \begin{itemize}
 \item After a spin-quantum computation has finished, the results must be read by collapsing the qubits' wave functions into either spin-up or spin-down states
 \item Exploiting physical phenomena such as quantum tunnelling and Zeeman splitting allows these quantum mechanical results to manifest as electrical parameters such as resistance and capacitance, which can be measured using classical RF techniques
-\item Dispersive readout, which measures the change in capacitance of a charge-sensing SET, relying on the Pauli spin blockade effect to convert a qubit's spin into the presence/absence of charges in the SET \cite{vigneau_review}
+\item Dispersive readout, which measures the change in capacitance of a charge-sensing SET, relies on the Pauli spin blockade effect to convert a qubit's spin into the presence/absence of charges in the SET \cite{vigneau_review}
 \end{itemize}
 \end{frame}
 
@@ -360,7 +360,7 @@ C_{tunnelling} = \frac{(q\alpha)^2}{k_B T} \frac{R_K}{R_T} \frac{\epsilon_0}{h\g
 \end{frame}
 
 \begin{frame}
-\frametitle{Reflectometry Readout Techniques \& Requirements}
+\frametitle{Reflectometry System Architecture}
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.8\textwidth]{sv_iqubits_reflectometry.png}
@@ -371,8 +371,18 @@ C_{tunnelling} = \frac{(q\alpha)^2}{k_B T} \frac{R_K}{R_T} \frac{\epsilon_0}{h\g
 \end{frame}
 
 \begin{frame}
+\frametitle{Reflectometry Test Circuit}
+\begin{figure}[htpb]
+\centering
+\includegraphics[height=0.6\textheight]{lc_resonator_schematic.png}
+\caption{LC resonator breakout schematic. The red boxes indicate the transmission lines and test pads that are de-embedded. The green box indicates the DUT circuit for which S-parameters are extracted after measurement with a VNA.}
+\label{fig:lc_resonator_schematic}
+\end{figure}
+\end{frame}
+
+\begin{frame}
 \frametitle{12-bit Minimum Sized Unit Varactor Array}
-\begin{columns}[c]
+\begin{columns}[t]
 \begin{column}{0.5\textwidth}
 \begin{figure}[htpb]
 \centering
@@ -422,7 +432,7 @@ Phase\:Sensitivity\:(f) = \frac{\phi_{+0.8\:V}(f) - \phi_{-0.4\:V}(f)}{C_{+0.8\:
 
 \begin{equation}
 \label{eqn:parallel_rlc_ps_result}
-\boxed{PS(\omega_r) = -\omega_r R = -Q/C}
+Phase\:Sensitivity = \boxed{PS(\omega_r) = -\omega_r R = -Q/C}
 \end{equation}
 \end{frame}
 
@@ -438,7 +448,7 @@ Phase\:Sensitivity\:(f) = \frac{\phi_{+0.8\:V}(f) - \phi_{-0.4\:V}(f)}{C_{+0.8\:
 
 \begin{frame}
 \frametitle{Measured Phase Sensitivity}
-\begin{columns}[c]
+\begin{columns}[t]
 \begin{column}{0.5\textwidth}
 \begin{figure}[htpb]
 \centering
@@ -462,7 +472,7 @@ Phase\:Sensitivity\:(f) = \frac{\phi_{+0.8\:V}(f) - \phi_{-0.4\:V}(f)}{C_{+0.8\:
 
 \begin{frame}
 \frametitle{Measured Phase Sensitivity}
-\begin{columns}[c]
+\begin{columns}[t]
 \begin{column}{0.5\textwidth}
 \begin{figure}[htpb]
 \centering
@@ -513,7 +523,7 @@ Peak Quality Factor & \textbf{8} & 257 & ~100 \\
 % 5 slides
 
 \begin{frame}
-\frametitle{Qubit Spin Control Frequency Source Requirements}
+\frametitle{Frequency Generation for Qubit Spin Manipulation}
 \begin{itemize}
 \item Spin manipulation of qubits involves applying microwave pulses at frequencies close to the qubits' Larmor frequencies in order to perform logical operations (i.e. quantum gates) on them to execute a quantum algorithm \cite{vandersypen_qubit_spin_control}
 \item Fine-grained control of the oscillation frequency is desirable since it enables the frequency source to tune into the resonance frequency of a particular group of qubits, and compensate for variations in the resonance frequency that may result from imperfections in the qubit structures
@@ -525,7 +535,7 @@ Peak Quality Factor & \textbf{8} & 257 & ~100 \\
 The frequency source must:
 \begin{enumerate}
 \item Have low phase noise to prevent phase errors \cite{edoardo_cryo_cmos}
-\item Be stable in order to avoid frequency drift which causes phase errors on both the driven qubit and also qubits tuned to adjacent frequencies.
+\item Be frequency stable in order to avoid frequency drift which causes phase errors in both the driven qubit and qubits tuned to adjacent frequencies
 \item Be tunable over a wide range in order to address a large array of qubits, where each qubit has a slightly different (but not necessarily unique) resonance frequency \cite{pellerano_cryo_cmos}
 \end{enumerate}
 \end{frame}
@@ -533,11 +543,11 @@ The frequency source must:
 \begin{frame}
 \frametitle{Oscillator Tuning Range}
 \begin{equation}
-VR = \frac{\Delta C}{C_{fixed}}
+Varactor\:Ratio = VR = \frac{\Delta C}{C_{fixed}}
 \end{equation}
 
 \begin{equation}
-TR = 2\frac{\omega_{max} - \omega_{min}}{\omega_{max} + \omega_{min}}
+Tuning\:Range = TR = 2\frac{\omega_{max} - \omega_{min}}{\omega_{max} + \omega_{min}}
 \end{equation}
 
 \begin{equation}
@@ -587,9 +597,9 @@ TR = 2\frac{\omega_{max} - \omega_{min}}{\omega_{max} + \omega_{min}}
 
 \begin{frame}
 \frametitle{DCO Non-Linearity}
-\begin{columns}[c]
+\begin{columns}[t]
 \begin{column}{0.5\textwidth}
-\begin{figure}[htpb]
+\begin{figure}[t]
 \centering
 \includegraphics[width=0.9\textwidth]{dco_inl_dnl.png}
 \caption{INL and DNL in terms of frequency. The INL is equal to the difference between the best fit line and the simulated frequency at each code}
@@ -598,7 +608,7 @@ TR = 2\frac{\omega_{max} - \omega_{min}}{\omega_{max} + \omega_{min}}
 \end{column}
 
 \begin{column}{0.5\textwidth}
-\begin{figure}[htpb]
+\begin{figure}[t]
 \centering
 \includegraphics[width=0.9\textwidth]{dco_inl_dnl_lsb.png}
 \caption{INL and DNL in terms of the LSB step}
@@ -610,7 +620,7 @@ TR = 2\frac{\omega_{max} - \omega_{min}}{\omega_{max} + \omega_{min}}
 
 \begin{frame}
 \frametitle{Measured Spectra}
-\begin{columns}[c]
+\begin{columns}[t]
 \begin{column}{0.5\textwidth}
 \begin{figure}[htpb]
 \centering
@@ -668,7 +678,7 @@ Technology & 22 nm FDSOI CMOS & \textbf{22 nm FDSOI CMOS} & 22 nm FDSOI CMOS & 2
 \begin{frame}
 \frametitle{Summary}
 \begin{itemize}
-\item Further research is needed to enable large-scale quantum computing
+\item Further research is needed to enable large-scale quantum computing in silicon
 \item This work presents:
 \begin{itemize}
 \item An auto-biasing circuit topology which can be used over a wide temperature range
@@ -685,8 +695,8 @@ Technology & 22 nm FDSOI CMOS & \textbf{22 nm FDSOI CMOS} & 22 nm FDSOI CMOS & 2
 Future generations of students can improve upon this work by:
 \begin{itemize}
 \item Fabricating and testing the new deserializer design to validate it
-\item A new op amp design with better linearity and bipolar power supplies should enable the auto-biasing circuit to work at cryogenic temperatures
-\item Explore circuit topologies for generating qubit spin manipulation pulses, such as passive switch-based mixers and RFDAC circuits
+\item Designing a new op amp with better linearity and bipolar power supplies to enable the operation of the auto-biasing circuit at cryogenic temperatures
+\item Exploring circuit topologies for generating qubit spin manipulation pulses, such as passive switch-based mixers and RFDAC circuits
 \end{itemize}
 \end{frame}
 
