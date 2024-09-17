@@ -73,7 +73,7 @@ University of Toronto \\
 Supervisor: Prof. Sorin Voinigescu
 }
 
-\date[September 19\textsuperscript{th}, 2024]{September 19\textsuperscript{th}, 2024}
+\date[September 25\textsuperscript{th}, 2024]{September 25\textsuperscript{th}, 2024}
 
 % UofT logo
 \titlegraphic{\includegraphics[width=2cm]
@@ -225,8 +225,8 @@ The devices sizes and bias voltages must be designed such that \cite{lucy_thesis
 \item The input and output voltages (i.e. the devices' V\textsubscript{GS} and V\textsubscript{DS}, respectively), are equal to V\textsubscript{dd}/2
 \item Both the NMOS and PMOS transistors are in the saturation regime
 \item The two devices have the same \say{drive strength}. That is, they have the same on-current ($I_{\textrm{ON}}$) such that for a given capacitive load, the PMOS and NMOS transistors can charge and discharge the load at the same speed
-\item The devices are both biased at the peak $\textrm{f}_{max}$\footnote[1]{$\textrm{f}_{T}$ or $\textrm{NF}_{min}$ may also be used} current density
-\item The devices have the same threshold voltage
+\item The devices are both biased at the peak $\textrm{f}_{max}$\footnote[1]{$\textrm{f}_{T}$ or $\textrm{NF}_{min}$ may also be used, incurring a power consumption trade-off} current density
+\item The devices have roughly the same threshold voltage
 \end{enumerate}
 \end{frame}
 
@@ -246,7 +246,7 @@ The devices sizes and bias voltages must be designed such that \cite{lucy_thesis
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.6\textwidth]{autobias_system_schematic.png}
-\caption{Auto-biasing circuit schematic.  $V_{\textrm{ddm}}$ is the replica mirror supply, nominally equal to 0.8 V. $V_{\textrm{ddc}}$ is the target circuit supply, nominally equal to 0.8 V.}
+\caption{Auto-biasing circuit schematic.  $V_{\textrm{ddm}}$ is the replica mirror supply, nominally equal to 0.8 V. $V_{\textrm{ddc}}$ is the target circuit supply, \linebreak nominally equal to 0.8 V}
 \label{fig:autobias_system_schematic}
 \end{figure}
 \end{frame}
@@ -256,7 +256,7 @@ The devices sizes and bias voltages must be designed such that \cite{lucy_thesis
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.8\textwidth]{opamp_schematic.png}
-\caption{CMOS rail-to-rail op amp schematic. All devices have 300 nm gate lengths. All NMOS devices have 1.8 V backgates, and all PMOS devices have 0 V backgates. All transistors are of the EGSLVT (thick-oxide, maximum 1.8 V, super-low $|V_{\textrm{t}}|$) flavour.}
+\caption{CMOS rail-to-rail op amp schematic. All devices have 300 nm gate lengths. All NMOS devices have 1.8 V backgates, and all PMOS devices have 0 V backgates. All transistors are of the EGSLVT (thick-oxide, maximum 1.8 V, super-low $|V_{\textrm{t}}|$) flavour}
 \label{fig:opamp_schematic}
 \end{figure}
 \end{frame}
@@ -266,7 +266,7 @@ The devices sizes and bias voltages must be designed such that \cite{lucy_thesis
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.8\textwidth]{opamp_operating_point.png}
-\caption{CMOS rail-to-rail op amp operating points. All devices have 300 nm gate lengths. All NMOS devices have 1.8 V backgates, and all PMOS devices have 0 V backgates. All transistors are of the EGSLVT (thick-oxide, maximum 1.8 V, super-low $|V_{\textrm{t}}|$) flavour.}
+\caption{CMOS rail-to-rail op amp operating points. All devices have 300 nm gate lengths. All NMOS devices have 1.8 V backgates, and all PMOS devices have 0 V backgates. All transistors are of the EGSLVT (thick-oxide, maximum 1.8 V, super-low $|V_{\textrm{t}}|$) flavour}
 \label{fig:opamp_operating_point}
 \end{figure}
 \end{frame}
@@ -279,7 +279,7 @@ The devices sizes and bias voltages must be designed such that \cite{lucy_thesis
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.9\textwidth]{jds_vs_independent_temp_0p8V.png}
-\caption[Measured target circuit current density versus temperature]{Measured target circuit current density versus temperature, with 0.8 V supply voltage.}
+\caption[Measured target circuit current density versus temperature]{Measured target circuit current density versus temperature, with \linebreak 0.8 V supply voltage}
 \label{fig:jds_vs_independent_temp_0p8V}
 \end{figure}
 \end{column}
@@ -288,7 +288,7 @@ The devices sizes and bias voltages must be designed such that \cite{lucy_thesis
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.9\textwidth]{voltage_vs_independent_temp_0p8V.png}
-\caption[Measured target circuit output voltage versus temperature]{Measured target circuit output voltage versus temperature, with 0.8 V supply voltage.}
+\caption[Measured target circuit output voltage versus temperature]{Measured target circuit output voltage versus temperature, with \linebreak 0.8 V supply voltage}
 \label{fig:voltage_vs_independent_temp_0p8V}
 \end{figure}
 \end{column}
@@ -304,7 +304,7 @@ The devices sizes and bias voltages must be designed such that \cite{lucy_thesis
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.9\textwidth]{jds_vs_independent_temp_0p8V_sim_vs_measurement.png}
-\caption{Comparison of simulated and measured current density of the target circuit, for $J_{mirror}$ = 250 $\upmu$A/$\upmu$m and 0.8 V supply voltage}
+\caption{Comparison of simulated and measured current density of the target circuit, for $J_{mirror}$ = 250 $\upmu$A/$\upmu$m and \linebreak 0.8 V supply voltage}
 \label{fig:jds_vs_independent_temp_0p8V_sim_vs_measurement}
 \end{figure}
 \end{column}
@@ -313,7 +313,7 @@ The devices sizes and bias voltages must be designed such that \cite{lucy_thesis
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.9\textwidth]{vout_vs_independent_temp_0p8V_sim_vs_measurement.png}
-\caption{Comparison of simulated and measured output voltage of the target circuit, for $J_{mirror}$ = 250 $\upmu$A/$\upmu$m and 0.8 V supply voltage}
+\caption{Comparison of simulated and measured output voltage of the target circuit, for $J_{mirror}$ = 250 $\upmu$A/$\upmu$m and \linebreak 0.8 V supply voltage}
 \label{fig:vout_vs_independent_temp_0p8V_sim_vs_measurement}
 \end{figure}
 \end{column}
@@ -375,7 +375,7 @@ C_{tunnelling} = \frac{(q\alpha)^2}{k_B T} \frac{R_K}{R_T} \frac{\epsilon_0}{h\g
 \begin{figure}[htpb]
 \centering
 \includegraphics[height=0.6\textheight]{lc_resonator_schematic.png}
-\caption{LC resonator breakout schematic. The red boxes indicate the transmission lines and test pads that are de-embedded. The green box indicates the DUT circuit for which S-parameters are extracted after measurement with a VNA.}
+\caption{LC resonator breakout schematic. The red boxes indicate the transmission lines and test pads that are de-embedded. The green box indicates the DUT circuit for which S-parameters are extracted after measurement with a VNA}
 \label{fig:lc_resonator_schematic}
 \end{figure}
 \end{frame}
@@ -408,7 +408,7 @@ C_{tunnelling} = \frac{(q\alpha)^2}{k_B T} \frac{R_K}{R_T} \frac{\epsilon_0}{h\g
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.5\textwidth]{zt_unit_varactor.png}
-\caption{Simulation (without extracted parasitics) of the 12-bit varactor when adjusting the control voltage of the first 2 LSBs. The overall change in capacitance caused by the \first \, LSB is 18.4 aF. The overall change in capacitance caused by the \second \, LSB is 37.5 aF. In this simulation, the backgate voltage is zero, the top gate voltage is 0.4 V, and the 10 MSBs are set to 0.8 V.}
+\caption{Simulation (without extracted parasitics) of the 12-bit varactor when adjusting the control voltage of the first 2 LSBs. The overall change in capacitance caused by the \first \, LSB is 18.4 aF. The overall change in capacitance caused by the \second \, LSB is 37.5 aF. In this simulation, the backgate voltage is zero, the top gate voltage is 0.4 V, and the 10 MSBs are set to 0.8 V}
 \label{fig:unit_varactor}
 \end{figure}
 \end{frame}
@@ -441,7 +441,7 @@ Phase\:Sensitivity = \boxed{PS(\omega_r) = -\omega_r R = -Q/C}
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.5\textwidth]{zt_measured_tuning_range.png}
-\caption{Measured and simulated tuning range, with respect to the MSB control voltage. The measured tuning range is 47.45 GHz to 63.40 GHz (28.8 \%).}
+\caption{Measured and simulated tuning range, with respect to the MSB control voltage. The measured tuning range is 47.45 GHz to 63.40 GHz (28.8 \%)}
 \label{fig:measured_tuning_range}
 \end{figure}
 \end{frame}
@@ -453,7 +453,7 @@ Phase\:Sensitivity = \boxed{PS(\omega_r) = -\omega_r R = -Q/C}
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.9\textwidth]{zt_phase_b1_measured.png}
-\caption{Measured LC resonator phase with respect to the \first \, LSB control voltage.}
+\caption{Measured LC resonator phase with respect to the \first \, LSB control voltage}
 \label{fig:phase_b1_measured}
 \end{figure}
 \end{column}
@@ -477,7 +477,7 @@ Phase\:Sensitivity = \boxed{PS(\omega_r) = -\omega_r R = -Q/C}
 \begin{figure}[htpb]
 \centering
 \includegraphics[width=0.9\textwidth]{zt_phase_b2_measured.png}
-\caption{Measured LC resonator phase with respect to the \second \, LSB control voltage.}
+\caption{Measured LC resonator phase with respect to the \second \, LSB control voltage}
 \label{fig:phase_b2_measured}
 \end{figure}
 \end{column}
@@ -667,8 +667,8 @@ Frequency LSB Step [MHz] & 1.98 & \textbf{1.77} & 1.85 & 0.15 & 0.35 \\
 Technology & 22 nm FDSOI CMOS & \textbf{22 nm FDSOI CMOS} & 22 nm FDSOI CMOS & 28 nm bulk CMOS & 65 nm bulk CMOS \\
 \hline
 \end{tabular}
-\mbox{*Power consumption of the entire system, including the buffers, biasing circuit and deserializer.}
-\mbox{**Power consumption of only the oscillator core.}
+\mbox{*Power consumption of the entire system, including the buffers, biasing circuit and deserializer}
+\mbox{**Power consumption of only the oscillator core}
 \label{tab:dco_comparison}
 \end{table}
 \end{frame}
@@ -682,7 +682,7 @@ Technology & 22 nm FDSOI CMOS & \textbf{22 nm FDSOI CMOS} & 22 nm FDSOI CMOS & 2
 \item This work presents:
 \begin{itemize}
 \item An auto-biasing circuit topology which can be used over a wide temperature range
-\item A resonant circuit which can be used for determining the results of a quantum computation
+\item An LC tank circuit which can be used for determining the results of a quantum computation
 \item A frequency source which can be used for generating qubit spin manipulation signals
 \end{itemize}
 \item The circuits were validated with room temperature measurements, and are expected to perform even better at temperatures down to 2 K
